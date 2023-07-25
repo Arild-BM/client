@@ -146,9 +146,9 @@ h3 {
 }
 
 /* Remove Scrollbar */
-/* .input-field::-webkit-scrollbar {
+.input-field::-webkit-scrollbar {
   display: none;
-} */
+}
 
 /* Changes for items marked ready for deletion */
 .deleted {

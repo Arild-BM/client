@@ -41,7 +41,7 @@ function App() {
   async function auth() {
     
     try {
-      const res = await axios.get('/authenticate', { auth: { username, password } });
+      const res = await axios.get('http://localhost:5000/authenticate', { auth: { username, password } });
       
       if (res.data.screen !== undefined) {
         console.log("Screen: " + res.data.screen)
@@ -70,10 +70,10 @@ function App() {
   }, []);
   
   // Remove messages after 2 seconds
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setMessage(""), 2000);
-  //   return () => clearTimeout(timer);
-  // }, [message]);
+  useEffect(() => {
+    const timer = setTimeout(() => setMessage(""), 2000);
+    return () => clearTimeout(timer);
+  }, [message]);
 
   // Let user change password
   async function saveNewPassword(pw) {
