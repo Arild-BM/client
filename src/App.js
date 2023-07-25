@@ -41,7 +41,7 @@ function App() {
   async function auth() {
     
     try {
-      const res = await axios.get('http://localhost:5000/authenticate', { auth: { username, password } });
+      const res = await axios.get('/authenticate', { auth: { username, password } });
       
       if (res.data.screen !== undefined) {
         console.log("Screen: " + res.data.screen)
@@ -54,7 +54,7 @@ function App() {
 
   const readCookie = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/read-cookie');
+      const res = await axios.get('/read-cookie');
       
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);

@@ -20,7 +20,7 @@ function View (props) {
   // Logout
   const deleteCookie = async () => {
     try {
-      await axios.get('http://localhost:5000/clear-cookie');
+      await axios.get('/clear-cookie');
       setScreen('auth');
       setPassword("")
       setUsername("")
@@ -40,7 +40,7 @@ function View (props) {
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      const res = await axios.put('http://localhost:5000/put-data', {todolist: [...todos, newTodo]});
+      const res = await axios.put('/put-data', {todolist: [...todos, newTodo]});
       console.log(res.data)
     } catch (e) {
       console.log(e);
@@ -68,7 +68,7 @@ function View (props) {
   async function updateTodo(id) {
     const index = todos.findIndex((todo) => todo.id === id )
     try {
-      const res = await axios.put('http://localhost:5000/put-data', {
+      const res = await axios.put('/put-data', {
         todolist: [...todos.slice(0, index),
                   {todo: todos[index].todo,
                   active: !todos[index].active,
@@ -94,7 +94,7 @@ function View (props) {
     const index = todos.findIndex((todo) => todo.id === id )
     
     try {
-      const res = await axios.put('http://localhost:5000/put-data', {
+      const res = await axios.put('/put-data', {
         todolist: [...todos.slice(0, index),
                   {todo: todos[index].todo,
                   active: todos[index].active,
@@ -140,7 +140,7 @@ function View (props) {
   // Delete marked Todos
   async function deleteMarkedTodos() {
     try {
-      const res = await axios.put('http://localhost:5000/put-data', {
+      const res = await axios.put('/put-data', {
         todolist: todos.filter(item => !item.completed)});
         console.log(res.data)
     } catch (e) {
