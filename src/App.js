@@ -70,10 +70,10 @@ function App() {
   }, []);
   
   // Remove messages after 2 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => setMessage(""), 2000);
-    return () => clearTimeout(timer);
-  }, [message]);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setMessage(""), 2000);
+  //   return () => clearTimeout(timer);
+  // }, [message]);
 
   // Let user change password
   async function saveNewPassword(pw) {
