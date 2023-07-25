@@ -41,14 +41,14 @@ function App() {
   async function auth() {
     setMessage("Test1")
     try {
-      const res = await axios.get('/authenticate', { auth: { username, password } });
+      const res = await axios.get('http://localhost:5000/authenticate', { auth: { username, password } });
       
       if (res.data.screen !== undefined) {
         console.log("Screen: " + res.data.screen)
         setScreen(res.data.screen);
       }
     } catch (e) {
-      setMessage("Test2")
+      // setMessage("Test2")
     }
   };
 
