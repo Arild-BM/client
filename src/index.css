@@ -1,13 +1,222 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  /* box-sizing: border-box; */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Dark color theme */
+:root,
+:root.dark {
+  --picture-background-desktop: url("./pictures/bg-desktop-dark.jpg");
+  --color-background-body: hsl(240, 69%, 11%);
+  --color-active-text: hsl(220, 98%, 61%);           /* Bright Blue */
+  --color-todo-text: hsl(234, 39%, 85%);             /* Light Grayish Blue */
+  --color-background-todo-item: hsl(233, 26%, 19%);  /* Very Dark Desaturated Blue */
+  --color-horizontal-line: hsl(233, 14%, 35%);       /* Very Dark Grayish Blue */
+  --color-deleted-text: hsl(234, 11%, 52%);          /* Dark Grayish Blue */
+  --color-hover: lightskyblue;
 }
+
+/* Light color theme */
+:root.light {
+  --picture-background-desktop: url("./pictures/bg-desktop-light.jpg");
+  --color-background-body: hsl(236, 33%, 92%);       /* Very Light Grayish Blue */
+  --color-active-text: hsl(220, 98%, 61%);           /* Bright Blue */
+  --color-todo-text: hsl(235, 19%, 35%);             /* Very Dark Grayish Blue */
+  --color-background-todo-item: hsl(0, 0%, 98%);     /* Very Light Gray */
+  --color-horizontal-line: hsl(236, 9%, 61%);        /* Dark Grayish Blue */
+  --color-deleted-text: hsl(230, 10%, 53%);
+  --color-hover: lightskyblue;
+  /* - Light Grayish Blue: hsl(233, 11%, 84%) */
+}
+
+/* Common settings for Todo app */
+.App {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  color: white;
+}
+
+/* Margin for all input elements */
+input {
+  margin-bottom: 5px;
+}
+
+/* Background for app */
+body {
+  background: var(--color-background-body) var(--picture-background-desktop) no-repeat center top/100% 200px fixed;
+  display: flex;
+  justify-content: center;
+  /* position: relative; */
+}
+
+/* Common for all buttons */
+button {
+  color: white;
+  margin: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  scale: 1.2;
+}
+
+/* Header in Todo app */
+.header {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+/* TODO-text in header */
+h3 {
+  margin-left: 13px;
+}
+
+/* Icon for toggle color mode */
+.darkmode-icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin-right: 13px;
+}
+
+.darkmode-icon:hover {
+  scale: 1.5;
+}
+
+/* Common for all lines below header (inkl footer) */
+.todo, .footer {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  align-items: center;
+  background-color: var(--color-background-todo-item);
+  border-radius: 5px;
+  color: var(--color-todo-text);
+}
+
+/* Margins for first and last line (=footer)  */
+.create-line-margin, .footer {
+  margin: 20px 0;
+}
+
+/* Horozontal line between Todos and no border radius */
+.todo2 {
+  border-radius: 0;
+  border-bottom: 2px solid var(--color-horizontal-line);
+}
+
+/* Settings for line under Todos */
+.todo3 {
+  border-radius: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: small;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* Border radius on top for first Todo */
+.todo:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Space for footer */
+.footer {
+  justify-content: space-around;
+}
+
+/* Settings for text field in Todo lines */
+.input-field {
+  background-color: var(--color-background-todo-item);
+  color: var(--color-todo-text);
+  border: none;
+  outline: none;
+  width: 217px;
+  text-align: left;
+  white-space: nowrap; /* Prevent Todo to wrap into several lines */
+  overflow-x: scroll; /* Prevent overflow and make sure you can read long Todo by scrolling */
+}
+
+/* Remove Scrollbar */
+.input-field::-webkit-scrollbar {
+  display: none;
+}
+
+/* Changes for items marked ready for deletion */
+.deleted {
+  text-decoration: line-through;
+  color: var(--color-deleted-text);
+}
+
+/* Circle in front of Todo */
+.mark {
+  width: 10px;
+  height: 10px;
+  margin: auto 10px;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--color-horizontal-line);
+}
+
+/* Change pointer for circle and cross (X) */
+.mark-pointer {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.mark-pointer:hover {
+  border: 1px solid hsl(192, 100%, 67%);
+}
+
+/* Blue background in done Todos */
+.marked {
+  background-image: linear-gradient(125deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  border: 1px solid var(--color-background-todo-item);
+}
+
+/* Change ponter for last line and footer */
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  scale: 1.2;
+  color: var(--color-hover);
+}
+
+/* Spesific settings for hover on delete cross (X) */
+.cross:hover {
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 8px;
+  scale: 1.3;
+}
+
+/* Blue color on active display in footer */
+.blue-text {
+  color: var(--color-active-text)
+}
+
+/* Red color on pop-up text - user created - user deleted - etc */
+.message {
+  color: red;
+}
+
+/* Spesific margin for pop-up text on create new user page */
+.message2 {
+  margin: -8.3px;
+}
+
+/* Changes for small screen - not implemented
+@media (max-width: 500px) {
+  
+} */
