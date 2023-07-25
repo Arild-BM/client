@@ -57,7 +57,7 @@ function View (props) {
   // Get data from database when application opens
   async function getData() {
     try {
-      const res = await axios.get('http://localhost:5000/get-data');
+      const res = await axios.get('/get-data');
       setTodos(res.data);
     } catch (e) {
       console.log(e);
