@@ -39,7 +39,7 @@ function App() {
 
   // Log in user
   async function auth() {
-    
+    setMessage("Test1")
     try {
       const res = await axios.get('/authenticate', { auth: { username, password } });
       
@@ -48,7 +48,7 @@ function App() {
         setScreen(res.data.screen);
       }
     } catch (e) {
-      setMessage(e.response.data)
+      setMessage("Test2")
     }
   };
 
