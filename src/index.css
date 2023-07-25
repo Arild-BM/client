@@ -48,7 +48,6 @@ body {
   background: var(--color-background-body) var(--picture-background-desktop) no-repeat center top/100% 200px fixed;
   display: flex;
   justify-content: center;
-  /* position: relative; */
 }
 
 /* Common for all buttons */
@@ -147,9 +146,9 @@ h3 {
 }
 
 /* Remove Scrollbar */
-.input-field::-webkit-scrollbar {
+/* .input-field::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* Changes for items marked ready for deletion */
 .deleted {
