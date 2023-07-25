@@ -54,7 +54,7 @@ function App() {
 
   const readCookie = async () => {
     try {
-      const res = await axios.get('/read-cookie');
+      const res = await axios.get('http://localhost:5000/read-cookie');
       
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
