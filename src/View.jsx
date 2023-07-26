@@ -155,7 +155,7 @@ function View (props) {
       <div className = "header">
         <h3>TODO</h3>
         <button onClick={deleteCookie}>Logout</button>
-        {console.log("Username: " + username)}
+        {/* {console.log("Username: " + username)} */}
         {username === "admin" ?
           <button onClick={() => setScreen('deleteUser')}>Delete user</button>
           : <button onClick={() => setScreen('changePw')}>Change PW</button>
@@ -189,20 +189,20 @@ function View (props) {
       {/* Show Todo list */}
       <div className="todo-list">
         {/* Show all Todos */}
-        {show==="All" ? todos.map((item, index) => <InsertTodoLine item={item} index={index}/>): null}
+        {show==="All" ? todos.map((item, index) => <InsertTodoLine key = {index} item={item} index={index}/>): null}
         {/* Show only active Todos */}
-        {show==="Active" ? todos.filter(todo => todo.active === true).map((item, index) => <InsertTodoLine item={item} index={index}/>): null}
+        {show==="Active" ? todos.filter(todo => todo.active === true).map((item, index) => <InsertTodoLine key = {index} item={item} index={index}/>): null}
         {/* Show only completed Todos - ready for deletion */}
-        {show==="Completed" ? todos.filter(todo => todo.completed === true).map((item, index) => <InsertTodoLine item={item} index={index}/>): null}
+        {show==="Completed" ? todos.filter(todo => todo.completed === true).map((item, index) => <InsertTodoLine key = {index} item={item} index={index}/>): null}
         
         {/* Line with buttons Insert Todo and Delete Completed */}
-        <div className="todo todo3">
+        <div key="buttons" className="todo todo3">
           <p>{todos.length === 0 ? "Insert Todo" : todos.length === 1 ? "1 item left" : todos.length + " items left"}</p>
           <p className="pointer" onClick = {() => deleteMarkedTodos()}>Delete Completed</p>
         </div>
 
         {/* Footer - Choose which Todos to show */}
-        <div className="todo footer">
+        <div key="footer" className="todo footer">
           <p className = {show === "All" ? "pointer blue-text" : "pointer"} onClick = {() => setShow("All")}>All</p>
           <p className = {show === "Active" ? "pointer blue-text" : "pointer"} onClick = {() => setShow("Active")}>Active</p>
           <p className = {show === "Completed" ? "pointer blue-text" : "pointer"} onClick = {() => setShow("Completed")}>Completed</p>

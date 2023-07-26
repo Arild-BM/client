@@ -15,10 +15,11 @@ function App() {
   const [message, setMessage] = useState("");
   const [delAcc, setDelAcc] = useState("");
 
+
   // Create new users
   const register = async () => {
     try {
-      const res = await fetch('http://localhost:5000/register', {
+      const res = await fetch('/register', {
         method: 'POST',
        body: JSON.stringify({ name: name, username: username, password: password }),
       headers: { 'Content-Type': 'application/json' }
@@ -39,23 +40,23 @@ function App() {
 
   // Log in user
   async function auth() {
-    setMessage("Test1")
+    
     try {
-      const res = await axios.get('http://localhost:5000/authenticate', { auth: { username, password } });
+      const res = await axios.get('/authenticate', { auth: { username, password } });
       
       if (res.data.screen !== undefined) {
-        console.log("Screen: " + res.data.screen)
+        // console.log("Screen: " + res.data.screen)
         setScreen(res.data.screen);
       }
     } catch (e) {
-      // setMessage("Test2")
+      setMessage(e.response.data)
     }
   };
 
   const readCookie = async () => {
     try {
       const res = await axios.get('/read-cookie');
-      
+      console.log(res.data.screen)
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
       }
@@ -78,7 +79,7 @@ function App() {
   // Let user change password
   async function saveNewPassword(pw) {
     try {
-      const res = await fetch('http://localhost:5000/changePw', {
+      const res = await fetch('/changePw', {
         method: 'PATCH',
        body: JSON.stringify({ username: username, password: pw }),
       headers: { 'Content-Type': 'application/json' }
@@ -102,7 +103,7 @@ function App() {
   // Delete user account
   async function deleteUser(user) {
     try {
-      const res = await fetch('http://localhost:5000/deleteUser', {
+      const res = await fetch('/deleteUser', {
         method: 'DELETE',
        body: JSON.stringify({ username: user }),
       headers: { 'Content-Type': 'application/json' }
