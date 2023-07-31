@@ -41,6 +41,7 @@
 /* Margin for all input elements */
 input {
   margin-bottom: 5px;
+  outline: none;
 }
 
 /* Background for app */
